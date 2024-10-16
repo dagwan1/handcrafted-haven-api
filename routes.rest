@@ -416,5 +416,5 @@ curl -X PUT http://localhost:8080/cartitems/670fe9732c7b6d5383afecac \
 
 ### Delete a Cart Item by ID
 ###
-curl -X DELETE http://localhost:8080/cartitems/670fe9232c7b6d5383afecaa \
+curl -X DELETE http://localhost:8080/cartitems/67104864e55c7e1fc3fe7c6c \
 -H "Content-Type: application/json"
