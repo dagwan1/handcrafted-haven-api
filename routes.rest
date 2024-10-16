@@ -1,0 +1,420 @@
+// USER API
+
+#'## Create a New User Account
+###
+curl -X POST http://localhost:8080/users \
+-H "Content-Type: application/json" \
+-d '{
+  "name": "John Doe",         
+  "username": "john_doe",
+  "email": "dagwanpan@gmail.com",
+  "password": "yourPassword123",
+  "confirmPassword": "yourPassword123",
+  "userType": "buyer",
+  "profilePicture": "http://example.com/profile.jpg",
+  "bio": "Hello! I am a buyer.",
+  "address": "123 Main St, City, Country"
+}'
+
+
+### User Login
+###
+curl -X POST http://localhost:8080/users/login \
+-H "Content-Type: application/json" \
+-d '{
+  "username": "john_doe",  
+  "password": "yourPassword123"
+}'
+
+### Request Password Reset
+###
+curl -X POST http://localhost:8080/users/forgot-password \
+-H "Content-Type: application/json" \
+-d '{
+  "email": "dagwanpan@gmail.com"
+}'
+
+### Reset Password Using Token
+###
+curl -X POST http://localhost:8080/users/reset-password/07cab9a0c766fc4c5b4e3a7e9f001e4af64af527f759644bb9329f379ef82fc6 \
+-H "Content-Type: application/json" \
+-d '{
+  "password": "newPassword1234", 
+  "confirmPassword": "newPassword1234"
+}'
+
+
+### Get All Users (Authenticated)
+###
+curl -X GET http://localhost:8080/users \
+-H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzBmZGM3OTgyOWE1NTFkMjZmMDg2NTMiLCJ1c2VybmFtZSI6ImpvaG5fZG9lIiwiaWF0IjoxNzI5MDkyNzU5LCJleHAiOjE3MjkwOTYzNTl9.9bgS_7YdcUIgtu64vGhr0gRgae_rzkTJPm1iHAUFD1c"
+
+### Get a Single User by ID (Authenticated)
+###
+curl -X GET http://localhost:8080/users/670fde33829a551d26f08654 \
+-H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzBmZGM3OTgyOWE1NTFkMjZmMDg2NTMiLCJ1c2VybmFtZSI6ImpvaG5fZG9lIiwiaWF0IjoxNzI5MDkyNzU5LCJleHAiOjE3MjkwOTYzNTl9.9bgS_7YdcUIgtu64vGhr0gRgae_rzkTJPm1iHAUFD1c"
+
+### Update User by ID (Authenticated)
+###
+curl -X PUT http://localhost:8080/users/670fde33829a551d26f08654 \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzBmZGM3OTgyOWE1NTFkMjZmMDg2NTMiLCJ1c2VybmFtZSI6ImpvaG5fZG9lIiwiaWF0IjoxNzI5MDkyNzU5LCJleHAiOjE3MjkwOTYzNTl9.9bgS_7YdcUIgtu64vGhr0gRgae_rzkTJPm1iHAUFD1c" \
+-d '{
+  "name": "Jane Doe",
+  "username": "jane_doe",  
+  "email": "janedoe@example.com",
+  "password": "newPassword1234",
+  "confirmPassword": "newPassword1234",
+  "userType": "seller",
+  "profilePicture": "http://example.com/new_profile.jpg",
+  "bio": "Hello! I am a seller.",
+  "address": "456 Elm St, City, Country"
+}'
+
+### Delete User by ID (Authenticated)
+###
+curl -X DELETE http://localhost:8080/users/670fde33829a551d26f08654 \
+-H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzBmZGM3OTgyOWE1NTFkMjZmMDg2NTMiLCJ1c2VybmFtZSI6ImpvaG5fZG9lIiwiaWF0IjoxNzI5MDkyNzU5LCJleHAiOjE3MjkwOTYzNTl9.9bgS_7YdcUIgtu64vGhr0gRgae_rzkTJPm1iHAUFD1c"
+
+
+
+
+# SHOPPING CART API -----------------------------------------------------------------
+
+### Create a New Shopping Cart
+###
+curl -X POST http://localhost:8080/shoppingcarts \
+-H "Content-Type: application/json" \
+-d '{
+  "customerId": "60d21b4667d0d8992e610c85",
+  "products": [
+    {
+      "product": "60d21b4667d0d8992e610c86",
+      "quantity": 2
+    },
+    {
+      "product": "60d21b4667d0d8992e610c87",
+      "quantity": 1
+    }
+  ]
+}'
+
+### Get All Shopping Carts for a Customer
+###
+curl -X GET http://localhost:8080/shoppingcarts/customer/60d21b4667d0d8992e610c85 \
+-H "Content-Type: application/json"
+
+### Get a Single Shopping Cart by ID
+###
+curl -X GET http://localhost:8080/shoppingcarts/670fe177829a551d26f08656 \
+-H "Content-Type: application/json"
+
+### Update Shopping Cart by ID
+###
+curl -X PUT http://localhost:8080/shoppingcarts/670fe177829a551d26f08656 \
+-H "Content-Type: application/json" \
+-d '{
+  "customerId": "60d21b4667d0d8992e610c85",
+  "products": [
+    {
+      "product": "60d21b4667d0d8992e610c86",
+      "quantity": 3
+    }
+  ]
+}'
+
+### Delete Shopping Cart by ID
+###
+curl -X DELETE http://localhost:8080/shoppingcarts/670fe177829a551d26f08656 \
+-H "Content-Type: application/json"
+
+
+
+
+# REVIEW API -----------------------------------------------------------------
+
+### Create a New Review
+###
+curl -X POST http://localhost:8080/reviews \
+-H "Content-Type: application/json" \
+-d '{
+  "userId": "60d21b4667d0d8992e610c85",
+  "productId": "60d21b4667d0d8992e610c86",
+  "rating": 5,
+  "comment": "This product is amazing!"
+}'
+
+### Get All Reviews for a Product
+###
+curl -X GET http://localhost:8080/reviews/product/60d21b4667d0d8992e610c86 \
+-H "Content-Type: application/json"
+
+### Get a Single Review by ID
+###
+curl -X GET http://localhost:8080/reviews/670fe4a62c7b6d5383afec8b \
+-H "Content-Type: application/json"
+
+### Update Review by ID
+###
+curl -X PUT http://localhost:8080/reviews/670fe4a62c7b6d5383afec8b \
+-H "Content-Type: application/json" \
+-d '{
+  "userId": "60d21b4667d0d8992e610c85",
+  "productId": "60d21b4667d0d8992e610c86",
+  "rating": 4,
+  "comment": "Good product, but could be better."
+}'
+
+### Delete Review by ID
+###
+curl -X DELETE http://localhost:8080/reviews/670fe4a62c7b6d5383afec8b \
+-H "Content-Type: application/json"
+
+
+
+# PRODUCT API -----------------------------------------------------------------
+
+### Create a New Product
+###
+curl -X POST http://localhost:8080/products \
+-H "Content-Type: application/json" \
+-d '{
+  "sellerId": "60d21b4667d0d8992e610c85",
+  "title": "New Product",
+  "description": "A great product for testing.",
+  "price": 29.99,
+  "stockQuantity": 100,
+  "categoryId": "60d21b4667d0d8992e610c88",
+  "imageUrl": "http://example.com/product.jpg",
+  "status": "active"
+}'
+
+### Get All Products
+###
+curl -X GET http://localhost:8080/products \
+-H "Content-Type: application/json"
+
+### Get a Single Product by ID
+###
+curl -X GET http://localhost:8080/products/670fe5c72c7b6d5383afec93 \
+-H "Content-Type: application/json"
+
+### Update Product by ID
+###
+curl -X PUT http://localhost:8080/products/670fe5c72c7b6d5383afec93 \
+-H "Content-Type: application/json" \
+-d '{
+  "sellerId": "60d21b4667d0d8992e610c85",
+  "title": "Updated Product Title",
+  "description": "Updated description for testing.",
+  "price": 19.99,
+  "stockQuantity": 50,
+  "categoryId": "60d21b4667d0d8992e610c88",
+  "imageUrl": "http://example.com/updated_product.jpg",
+  "status": "active"
+}'
+
+### Delete Product by ID
+###
+curl -X DELETE http://localhost:8080/products/670fe5c72c7b6d5383afec93 \
+-H "Content-Type: application/json"
+
+
+
+# PAYMENT API -----------------------------------------------------------------
+
+### Create a New Payment
+###
+curl -X POST http://localhost:8080/payments \
+-H "Content-Type: application/json" \
+-d '{
+  "orderId": "60d21b4667d0d8992e610c90",
+  "paymentMethod": "Credit Card",
+  "paymentStatus": "pending",
+  "paymentDate": "2023-10-16T12:00:00Z"
+}'
+
+### Get All Payments for an Order
+###
+curl -X GET http://localhost:8080/payments/order/60d21b4667d0d8992e610c90 \
+-H "Content-Type: application/json"
+
+### Get a Single Payment by ID
+###
+curl -X GET http://localhost:8080/payments/670fe6522c7b6d5383afec98 \
+-H "Content-Type: application/json"
+
+### Update Payment by ID
+###
+curl -X PUT http://localhost:8080/payments/670fe68a2c7b6d5383afec9c \
+-H "Content-Type: application/json" \
+-d '{
+  "orderId": "60d21b4667d0d8992e610c90",
+  "paymentMethod": "PayPal",
+  "paymentStatus": "complete",
+  "paymentDate": "2023-10-16T15:00:00Z"
+}'
+
+### Delete Payment by ID
+###
+curl -X DELETE http://localhost:8080/payments/670fe6522c7b6d5383afec98 \
+-H "Content-Type: application/json"
+
+
+
+# ORDER API -----------------------------------------------------------------
+
+### Create a New Order
+###
+curl -X POST http://localhost:8080/orders \
+-H "Content-Type: application/json" \
+-d '{
+  "userId": "60d21b4667d0d8992e610c90",
+  "totalPrice": 100.50,
+  "shippingAddress": "123 Main St, Anytown, USA",
+  "status": "pending",
+  "orderDate": "2023-10-16T12:00:00Z"
+}'
+
+### Get All Orders for a User
+###
+curl -X GET http://localhost:8080/orders/user/60d21b4667d0d8992e610c90 \
+-H "Content-Type: application/json"
+
+### Get a Single Order by ID
+###
+curl -X GET http://localhost:8080/orders/670fe6fa2c7b6d5383afec9d \
+-H "Content-Type: application/json"
+
+### Update an Order by ID
+###
+curl -X PUT http://localhost:8080/orders/670fe7212c7b6d5383afeca0 \
+-H "Content-Type: application/json" \
+-d '{
+  "userId": "60d21b4667d0d8992e610c90",
+  "totalPrice": 150.75,
+  "shippingAddress": "456 Elm St, Othertown, USA",
+  "status": "shipped",
+  "orderDate": "2023-10-16T15:00:00Z"
+}'
+
+### Delete an Order by ID
+###
+curl -X DELETE http://localhost:8080/orders/670fe6fa2c7b6d5383afec9d \
+-H "Content-Type: application/json"
+
+
+
+# ORDER ITEM API -----------------------------------------------------------------
+
+### Create a New Order Item
+###
+curl -X POST http://localhost:8080/orderitems \
+-H "Content-Type: application/json" \
+-d '{
+  "orderId": "60d21b4667d0d8992e610c90",
+  "productId": "60d21b4667d0d8992e610c91",
+  "quantity": 2,
+  "price": 50.25
+}'
+
+### Get All Order Items for an Order
+###
+curl -X GET http://localhost:8080/orderitems/order/60d21b4667d0d8992e610c90 \
+-H "Content-Type: application/json"
+
+### Get a Single Order Item by ID
+###
+curl -X GET http://localhost:8080/orderitems/670fe7cc2c7b6d5383afeca4 \
+-H "Content-Type: application/json"
+
+### Update an Order Item by ID
+###
+curl -X PUT http://localhost:8080/orderitems/670fe7fd2c7b6d5383afeca5 \
+-H "Content-Type: application/json" \
+-d '{
+  "orderId": "60d21b4667d0d8992e610c90",
+  "productId": "60d21b4667d0d8992e610c91",
+  "quantity": 3,
+  "price": 75.50
+}'
+
+### Delete an Order Item by ID
+###
+curl -X DELETE http://localhost:8080/orderitems/670fe7cc2c7b6d5383afeca4 \
+-H "Content-Type: application/json"
+
+
+
+# CATEGORY API -----------------------------------------------------------------
+
+### Create a New Category
+###
+curl -X POST http://localhost:8080/categories \
+-H "Content-Type: application/json" \
+-d '{
+  "name": "Electronics",
+  "description": "Devices and gadgets for everyday use"
+}'
+
+### Get All Categories
+###
+curl -X GET http://localhost:8080/categories \
+-H "Content-Type: application/json"
+
+### Get a Single Category by ID
+###
+curl -X GET http://localhost:8080/categories/670fe87f2c7b6d5383afeca6 \
+-H "Content-Type: application/json"
+
+### Update a Category by ID
+###
+curl -X PUT http://localhost:8080/categories/670fe87f2c7b6d5383afeca6 \
+-H "Content-Type: application/json" \
+-d '{
+  "name": "Updated Electronics",
+  "description": "Updated description for the category"
+}'
+
+### Delete a Category by ID
+###
+curl -X DELETE http://localhost:8080/categories/670fe87f2c7b6d5383afeca6 \
+-H "Content-Type: application/json"
+
+
+# CART ITEM API -----------------------------------------------------------------
+
+### Create a New Cart Item
+###
+curl -X POST http://localhost:8080/cartitems \
+-H "Content-Type: application/json" \
+-d '{
+  "cartId": "60d21b4667d0d8992e610c93",
+  "productId": "60d21b9967d0d8992e610c94",
+  "quantity": 3
+}'
+
+### Get All Cart Items for a Specific Cart
+###
+curl -X GET http://localhost:8080/cartitems/cart/60d21b4667d0d8992e610c93 \
+-H "Content-Type: application/json"
+
+### Get a Single Cart Item by ID
+###
+curl -X GET http://localhost:8080/cartitems/670fe9232c7b6d5383afecaa \
+-H "Content-Type: application/json"
+
+### Update a Cart Item by ID
+###
+curl -X PUT http://localhost:8080/cartitems/670fe9732c7b6d5383afecac \
+-H "Content-Type: application/json" \
+-d '{
+  "cartId": "60d21b4667d0d8992e610c93",
+  "productId": "60d21b9967d0d8992e610c94",
+  "quantity": 5
+}'
+
+### Delete a Cart Item by ID
+###
+curl -X DELETE http://localhost:8080/cartitems/670fe9232c7b6d5383afecaa \
+-H "Content-Type: application/json"
