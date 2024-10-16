@@ -396,12 +396,12 @@ curl -X POST http://localhost:8080/cartitems \
 
 ### Get All Cart Items for a Specific Cart
 ###
-curl -X GET http://localhost:8080/cartitems/cart/60d21b4667d0d8992e610c93 \
+curl -X GET http://localhost:8080/cartitems/cart/671049f19e10b19c2f6bbff5 \
 -H "Content-Type: application/json"
 
 ### Get a Single Cart Item by ID
 ###
-curl -X GET http://localhost:8080/cartitems/670fe9232c7b6d5383afecaa \
+curl -X GET http://localhost:8080/cartitems/671049f19e10b19c2f6bbff5 \
 -H "Content-Type: application/json"
 
 ### Update a Cart Item by ID
