@@ -1,6 +1,6 @@
 # Handcrafted Haven API
 
-The Handcrafted Haven API is a RESTful web service built with Node.js and Express.js that allows for the management of user accounts, products, orders, and payments. It provides endpoints to perform various CRUD operations for a marketplace where artisans can sell handcrafted items.
+The Handcrafted Haven API is a RESTful web service designed for managing user accounts, products, orders, and payments in a marketplace dedicated to handcrafted items. Built with Node.js and Express.js, this API connects artisans with customers, enabling artisans to showcase and sell their unique products while providing essential functionalities like user registration, product listing, cart management, and payment processing. The API ensures secure interactions through JWT authentication and includes comprehensive endpoints for efficient CRUD operations, enhancing the overall user experience in the marketplace.
 
 ## Overview
 
