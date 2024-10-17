@@ -7,10 +7,10 @@ const productController = require('../controllers/productController');
 // Set up multer for file uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads/'); // Specify the upload directory
+    cb(null, 'uploads/'); // Make sure this folder exists
   },
   filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`); // Rename the file to avoid conflicts
+    cb(null, Date.now() + '-' + file.originalname); // Add a timestamp to avoid name collisions
   },
 });
 
@@ -28,7 +28,7 @@ const validateAndSanitizeProduct = [
 ];
 
 // Create a new product
-router.post('/', upload.single('image'), validateAndSanitizeProduct, productController.createProduct);
+router.post('/', upload.single('image'), productController.createProduct);
 
 // Get all products
 router.get('/', productController.getAllProducts);

@@ -3,6 +3,7 @@ const { validationResult } = require('express-validator');
 const ObjectId = require('mongodb').ObjectId;
 
 // Create a new product
+// Create a new product
 const createProduct = async (req, res) => {
   try {
     const errors = validationResult(req);
@@ -12,8 +13,8 @@ const createProduct = async (req, res) => {
 
     const { sellerId, title, description, price, stockQuantity, categoryId, status } = req.body;
 
-    // Handle the uploaded file
-    const imageUrl = req.file ? `/uploads/${req.file.filename}` : null;
+    // Get the image URL from the request file
+    const imageUrl = req.file ? req.file.path : null; // Assuming the file is saved in uploads folder
 
     // Create the new product entry object
     const productEntry = {
@@ -23,7 +24,7 @@ const createProduct = async (req, res) => {
       price,
       stockQuantity: stockQuantity || 0,
       categoryId: categoryId ? new ObjectId(categoryId) : null,
-      imageUrl,
+      imageUrl, // Use the image URL from the uploaded file
       status: status || 'active',
       createdAt: new Date(),
       updatedAt: new Date(),
