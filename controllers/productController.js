@@ -10,7 +10,10 @@ const createProduct = async (req, res) => {
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { sellerId, title, description, price, stockQuantity, categoryId, imageUrl, status } = req.body;
+    const { sellerId, title, description, price, stockQuantity, categoryId, status } = req.body;
+
+    // Handle the uploaded file
+    const imageUrl = req.file ? `/uploads/${req.file.filename}` : null;
 
     // Create the new product entry object
     const productEntry = {
@@ -39,6 +42,7 @@ const createProduct = async (req, res) => {
     res.status(500).json({ error: 'An error occurred while creating the product.' });
   }
 };
+
 
 // Get all products
 const getAllProducts = async (req, res) => {
