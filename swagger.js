@@ -14,8 +14,6 @@ const doc = {
 - **Rate Products:** Submit ratings and reviews for products.
 - **Order Products:** Choose products based on your selections.
 
-**Sample Requests and Responses:** Sample JSON requests and responses are included for each endpoint to facilitate interaction with the API.
-
 **Error Handling:** The API provides error responses and status codes to assist you in resolving issues.`,
   },
 
