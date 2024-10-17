@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { body } = require('express-validator');
-const cartItemController = require('../controllers/cartItemController');
+const cartItemController = require('../controllers/carttemController');
 
 // Validation and sanitization middleware for cart items
 const validateAndSanitizeCartItem = [
