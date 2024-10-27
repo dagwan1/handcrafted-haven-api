@@ -182,12 +182,12 @@ curl -X POST https://handcrafted-haven-api.onrender.com/products \
 -H "Content-Type: application/json" \
 -d '{
   "sellerId": "60d21b4667d0d8992e610c85",
-  "title": "New Product",
-  "description": "A great product for testing.",
-  "price": 29.99,
+  "title": "Handmade Ceramic Mug",
+  "description": "A beautifully crafted ceramic mug, perfect for enjoying your favorite hot beverage. The mug features a unique glaze pattern, adding a touch of artisanal charm to your kitchen",
+  "price": 25.00,
   "stockQuantity": 100,
   "categoryId": "60d21b4667d0d8992e610c88",
-  "imageUrl": "http://example.com/product.jpg",
+  "imageUrl": "/images/unique_product_image_1.jpg",
   "status": "active"
 }'
 
@@ -198,7 +198,7 @@ curl -X GET https://handcrafted-haven-api.onrender.com/products \
 
 ### Get a Single Product by ID
 ###
-curl -X GET https://handcrafted-haven-api.onrender.com/products/670fe5c72c7b6d5383afec93 \
+curl -X GET https://handcrafted-haven-api.onrender.com/products/67112afb9f14c7b93f26f80c \
 -H "Content-Type: application/json"
 
 ### Update Product by ID
@@ -355,8 +355,10 @@ curl -X DELETE https://handcrafted-haven-api.onrender.com/orderitems/670fe7cc2c7
 curl -X POST https://handcrafted-haven-api.onrender.com/categories \
 -H "Content-Type: application/json" \
 -d '{
-  "name": "Electronics",
-  "description": "Devices and gadgets for everyday use"
+  "name": "Handcrafted Wooden Bowl",
+  "description": "A beautifully handcrafted wooden bowl made from sustainable oak. Perfect for serving salads or as a decorative piece.
+
+"
 }'
 
 ### Get All Categories
@@ -428,6 +430,45 @@ curl -X DELETE https://handcrafted-haven-api.onrender.com/cartitems/67104864e55c
 
 
 // LOCAL APIS..........................................................................
+
+// LOCAL SELLER API
+
+### Create Seller Profile
+curl -X POST http://localhost:8080/sellers \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzFlYTRiZjEzNGY2ZjA4ZDRiY2ZiYTMiLCJlbWFpbCI6ImRhZ3dhbnBhbkBnbWFpbC5jb20iLCJpYXQiOjE3MzAwNjE1MDMsImV4cCI6MTczMDA2NTEwM30.K7larxfQYznhRgEk5StDIS7UuMw4yupTwVsQZw0jSwE" \
+-d '{
+  "phone": "123-456-7890",
+  "dob": "1990-01-01",
+  "gender": "female"
+}'
+
+### Get All Seller Profiles
+curl -X GET http://localhost:8080/sellers \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzFlYTRiZjEzNGY2ZjA4ZDRiY2ZiYTMiLCJlbWFpbCI6ImRhZ3dhbnBhbkBnbWFpbC5jb20iLCJpYXQiOjE3MzAwNjE1MDMsImV4cCI6MTczMDA2NTEwM30.K7larxfQYznhRgEk5StDIS7UuMw4yupTwVsQZw0jSwE"
+
+### Get a Seller Profile by ID
+curl -X GET http://localhost:8080/sellers/671ea4f3134f6f08d4bcfba4 \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzFlYTRiZjEzNGY2ZjA4ZDRiY2ZiYTMiLCJlbWFpbCI6ImRhZ3dhbnBhbkBnbWFpbC5jb20iLCJpYXQiOjE3MzAwNjE1MDMsImV4cCI6MTczMDA2NTEwM30.K7larxfQYznhRgEk5StDIS7UuMw4yupTwVsQZw0jSwE"
+
+### Update a Seller Profile by ID
+curl -X PUT http://localhost:8080/sellers/671ea4f3134f6f08d4bcfba4 \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzFlYTRiZjEzNGY2ZjA4ZDRiY2ZiYTMiLCJlbWFpbCI6ImRhZ3dhbnBhbkBnbWFpbC5jb20iLCJpYXQiOjE3MzAwNjE1MDMsImV4cCI6MTczMDA2NTEwM30.K7larxfQYznhRgEk5StDIS7UuMw4yupTwVsQZw0jSwE" \
+-d '{
+  "phone": "098-765-4321",
+  "dob": "1990-01-01",
+  "gender": "female"
+}'
+
+### Delete a Seller Profile by ID
+curl -X DELETE http://localhost:8080/sellers/671ea4f3134f6f08d4bcfba4 \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzFlYTRiZjEzNGY2ZjA4ZDRiY2ZiYTMiLCJlbWFpbCI6ImRhZ3dhbnBhbkBnbWFpbC5jb20iLCJpYXQiOjE3MzAwNjE1MDMsImV4cCI6MTczMDA2NTEwM30.K7larxfQYznhRgEk5StDIS7UuMw4yupTwVsQZw0jSwE"
+
+
 
 // USER API
 
@@ -611,12 +652,12 @@ curl -X POST http://localhost:8080/products \
 -H "Content-Type: application/json" \
 -d '{
   "sellerId": "60d21b4667d0d8992e610c85",
-  "title": "Handcrafted Wooden Bowl",
-  "description": "A beautifully handcrafted wooden bowl made from sustainable oak. Perfect for serving salads or as a decorative piece.",
-  "price": 29.99,
+  "title": "Woven Textile Coaster Set",
+  "description": "Set of handwoven coasters, made from sustainable natural fibers. These coasters protect your surfaces while adding a rustic and artistic touch to your home decor.",
+  "price": 18.00,
   "stockQuantity": 100,
   "categoryId": "60d21b4667d0d8992e610c88",
-  "imageUrl": "/images/product1.JPG",
+  "imageUrl": "/images/product7.JPG",
   "status": "active"
 }'
 
@@ -784,8 +825,8 @@ curl -X DELETE http://localhost:8080/orderitems/670fe7cc2c7b6d5383afeca4 \
 curl -X POST http://localhost:8080/categories \
 -H "Content-Type: application/json" \
 -d '{
-  "name": "Electronics",
-  "description": "Devices and gadgets for everyday use"
+  "name": "Handmade Wooden Bowl",
+  "description": ""
 }'
 
 ### Get All Categories

@@ -1,0 +1,39 @@
+BEGIN:VCALENDAR
+PRODID:-//AddEvent Inc//AddEvent.com v1.7//EN
+VERSION:2.0
+BEGIN:VTIMEZONE
+TZID:America/Los_Angeles
+BEGIN:STANDARD
+DTSTART:20241103T010000
+RRULE:FREQ=YEARLY;BYDAY=1SU;BYMONTH=11
+TZOFFSETFROM:-0700
+TZOFFSETTO:-0800
+TZNAME:PST
+END:STANDARD
+BEGIN:DAYLIGHT
+DTSTART:20240310T030000
+RRULE:FREQ=YEARLY;BYDAY=2SU;BYMONTH=3
+TZOFFSETFROM:-0800
+TZOFFSETTO:-0700
+TZNAME:PDT
+END:DAYLIGHT
+END:VTIMEZONE
+BEGIN:VEVENT
+DTSTAMP:20241011T041259Z
+STATUS:CONFIRMED
+UID:1728619979addeventcom
+SEQUENCE:0
+DTSTART;TZID=America/Los_Angeles:20241024T093000
+DTEND;TZID=America/Los_Angeles:20241024T170000
+SUMMARY:Next.js Conf 2024
+DESCRIPTION:You’re all set for Next.js Conf 2024. \n\nWhere: https://nextjs.org/conf\n\nAgenda:\n\n• 9:30-10:40am: Keynote + Q&A\n\n• 11am-5pm: Sessions \n\nStay tuned for surprising updates\, speaker announcements\, and ways to network. \n\n
+X-ALT-DESC;FMTTYPE=text/html:<p dir="ltr">You’re all set for Next.js Conf 2024. </p><p dir="ltr"><strong>Where: </strong>https://nextjs.org/conf</p><p dir="ltr"><strong>Agenda:</strong></p><ul><li dir="ltr"><p dir="ltr">9:30-10:40am: Keynote + Q&amp;A</p></li><li dir="ltr"><p dir="ltr">11am-5pm: Sessions </p></li></ul><p dir="ltr">Stay tuned for surprising updates, speaker announcements, and ways to network. </p>
+LOCATION:https://nextjs.org/conf
+BEGIN:VALARM
+TRIGGER:-PT60M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR

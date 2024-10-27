@@ -48,6 +48,11 @@ router.use('/reviews', require('./reviewRoutes'));
 // including creating, updating, retrieving, and deleting shopping carts.
 router.use('/shoppingcarts', require('./shoppingCartRoutes'));
 
+// Seller Routes
+// This route handles all requests related to seller profiles, including
+// viewing, adding, updating, and deleting seller information.
+router.use('/sellers', require('./sellerRoutes'));
+
 // User Routes
 // This route encompasses all user-related functionality, including
 // user registration, authentication, profile management, and
@@ -56,3 +61,4 @@ router.use('/users', require('./userRoutes'));
 
 // Export the router to be used in the main application
 module.exports = router;
+

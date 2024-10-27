@@ -22,7 +22,16 @@ const createUser = async (req, res) => {
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name, username, email, password, userType, profilePicture, bio, address } = req.body;
+    const {
+      name,
+      username,
+      email,
+      password,
+      userType, // Include userType as needed
+      profilePicture,
+      bio,
+      address,
+    } = req.body;
 
     // Check if email already exists
     const existingUser = await mongodb
@@ -44,11 +53,11 @@ const createUser = async (req, res) => {
       username,
       email,
       password: hashedPassword,
-      userType,
+      userType, // Include userType in the user entry
       profilePicture,
       bio,
       address,
-      createdAt: new Date()
+      createdAt: new Date(),
     };
 
     // Insert the new account entry into the 'users' collection
@@ -69,6 +78,62 @@ const createUser = async (req, res) => {
     res.status(500).json({ error: 'An error occurred while creating the account.' });
   }
 };
+
+// // Create a new account entry
+// const createUser = async (req, res) => {
+//   try {
+//     const errors = validationResult(req);
+//     if (!errors.isEmpty()) {
+//       return res.status(400).json({ errors: errors.array() });
+//     }
+
+//     const { name, username, email, password, userType, profilePicture, bio, address } = req.body;
+
+//     // Check if email already exists
+//     const existingUser = await mongodb
+//       .getDb()
+//       .db()
+//       .collection('users')
+//       .findOne({ email });
+
+//     if (existingUser) {
+//       return res.status(400).json({ error: 'Email already exists.' });
+//     }
+
+//     // Hash the password
+//     const hashedPassword = await bcrypt.hash(password, 10);
+
+//     // Create the new account entry object with hashed password
+//     const userEntry = {
+//       name,
+//       username,
+//       email,
+//       password: hashedPassword,
+//       userType,
+//       profilePicture,
+//       bio,
+//       address,
+//       createdAt: new Date()
+//     };
+
+//     // Insert the new account entry into the 'users' collection
+//     const response = await mongodb.getDb().db().collection('users').insertOne(userEntry);
+
+//     if (response.acknowledged) {
+//       // Generate JWT token
+//       const tokenPayload = { userId: response.insertedId, email: userEntry.email };
+//       const accessToken = jwt.sign(tokenPayload, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+//       // Respond with the token along with the account creation success message
+//       res.status(201).json({ success: 'Account created successfully', accessToken });
+//     } else {
+//       res.status(500).json({ error: 'Error occurred while creating the account.' });
+//     }
+//   } catch (error) {
+//     console.error('Error creating an account:', error);
+//     res.status(500).json({ error: 'An error occurred while creating the account.' });
+//   }
+// };
 
 // User login
 const login = async (req, res) => {

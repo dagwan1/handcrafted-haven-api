@@ -3,7 +3,6 @@ const { validationResult } = require('express-validator');
 const ObjectId = require('mongodb').ObjectId;
 
 // Create a new product
-// Create a new product
 const createProduct = async (req, res) => {
   try {
     const errors = validationResult(req);
@@ -11,10 +10,7 @@ const createProduct = async (req, res) => {
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { sellerId, title, description, price, stockQuantity, categoryId, status } = req.body;
-
-    // Get the image URL from the request file
-    const imageUrl = req.file ? req.file.path : null; // Assuming the file is saved in uploads folder
+    const { sellerId, title, description, price, stockQuantity, categoryId, imageUrl, status } = req.body;
 
     // Create the new product entry object
     const productEntry = {
@@ -24,7 +20,7 @@ const createProduct = async (req, res) => {
       price,
       stockQuantity: stockQuantity || 0,
       categoryId: categoryId ? new ObjectId(categoryId) : null,
-      imageUrl, // Use the image URL from the uploaded file
+      imageUrl,
       status: status || 'active',
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -43,7 +39,6 @@ const createProduct = async (req, res) => {
     res.status(500).json({ error: 'An error occurred while creating the product.' });
   }
 };
-
 
 // Get all products
 const getAllProducts = async (req, res) => {
