@@ -1,5 +1,45 @@
 // DEVELOPMENT APIS-------------------------------------------------------------------
 
+// SELLER API
+
+### Create Seller Profile
+curl -X POST http://handcrafted-haven-api.onrender.com/sellers \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzIxNTU2ZTc1YzY0NGVjODI0OGE2YjciLCJlbWFpbCI6ImRhZ3dhbnBhbkBnbWFpbC5jb20iLCJpYXQiOjE3MzAyMzc4MDYsImV4cCI6MTczMDI0MTQwNn0.I6rzmVhyk6yKG3jLtqaJNCKUDGbJamxZqQbaZrBKYcA" \
+-d '{
+  "phone": "123-456-7890",
+  "dob": "1990-01-01",
+  "gender": "female"
+}'
+
+### Get All Seller Profiles
+curl -X GET http://handcrafted-haven-api.onrender.com/sellers \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzFlYTRiZjEzNGY2ZjA4ZDRiY2ZiYTMiLCJlbWFpbCI6ImRhZ3dhbnBhbkBnbWFpbC5jb20iLCJpYXQiOjE3MzAwNjE1MDMsImV4cCI6MTczMDA2NTEwM30.K7larxfQYznhRgEk5StDIS7UuMw4yupTwVsQZw0jSwE"
+
+### Get a Seller Profile by ID
+curl -X GET http://handcrafted-haven-api.onrender.com/sellers/671ea4f3134f6f08d4bcfba4 \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzFlYTRiZjEzNGY2ZjA4ZDRiY2ZiYTMiLCJlbWFpbCI6ImRhZ3dhbnBhbkBnbWFpbC5jb20iLCJpYXQiOjE3MzAwNjE1MDMsImV4cCI6MTczMDA2NTEwM30.K7larxfQYznhRgEk5StDIS7UuMw4yupTwVsQZw0jSwE"
+
+### Update a Seller Profile by ID
+curl -X PUT http://handcrafted-haven-api.onrender.com/sellers/671ea4f3134f6f08d4bcfba4 \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzFlYTRiZjEzNGY2ZjA4ZDRiY2ZiYTMiLCJlbWFpbCI6ImRhZ3dhbnBhbkBnbWFpbC5jb20iLCJpYXQiOjE3MzAwNjE1MDMsImV4cCI6MTczMDA2NTEwM30.K7larxfQYznhRgEk5StDIS7UuMw4yupTwVsQZw0jSwE" \
+-d '{
+  "phone": "098-765-4321",
+  "dob": "1990-01-01",
+  "gender": "female"
+}'
+
+### Delete a Seller Profile by ID
+curl -X DELETE http://handcrafted-haven-api.onrender.com/sellers/671ea4f3134f6f08d4bcfba4 \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzFlYTRiZjEzNGY2ZjA4ZDRiY2ZiYTMiLCJlbWFpbCI6ImRhZ3dhbnBhbkBnbWFpbC5jb20iLCJpYXQiOjE3MzAwNjE1MDMsImV4cCI6MTczMDA2NTEwM30.K7larxfQYznhRgEk5StDIS7UuMw4yupTwVsQZw0jSwE"
+
+
+
+
 // USER API
 
 #'## Create a New User Account
@@ -182,12 +222,12 @@ curl -X POST https://handcrafted-haven-api.onrender.com/products \
 -H "Content-Type: application/json" \
 -d '{
   "sellerId": "60d21b4667d0d8992e610c85",
-  "title": "Handmade Ceramic Mug",
-  "description": "A beautifully crafted ceramic mug, perfect for enjoying your favorite hot beverage. The mug features a unique glaze pattern, adding a touch of artisanal charm to your kitchen",
-  "price": 25.00,
+  "title": "Eco-Friendly Tote Bag",
+  "description": "Crafted from sustainable materials, this eco-friendly tote bag is both stylish and practical. It’s perfect for carrying your everyday essentials while reducing your environmental footprint, making it a great choice for conscious consumers.",
+  "price": 55.00,
   "stockQuantity": 100,
   "categoryId": "60d21b4667d0d8992e610c88",
-  "imageUrl": "/images/unique_product_image_1.jpg",
+  "imageUrl": "/images/product6.jpg",
   "status": "active"
 }'
 
@@ -355,10 +395,8 @@ curl -X DELETE https://handcrafted-haven-api.onrender.com/orderitems/670fe7cc2c7
 curl -X POST https://handcrafted-haven-api.onrender.com/categories \
 -H "Content-Type: application/json" \
 -d '{
-  "name": "Handcrafted Wooden Bowl",
-  "description": "A beautifully handcrafted wooden bowl made from sustainable oak. Perfect for serving salads or as a decorative piece.
-
-"
+  "name": "Handmade Wooden Bowl",
+  "description": "This beautifully handcrafted wooden bowl is made from high-quality, sustainably sourced wood. Its natural grain and smooth finish make it a perfect addition to any kitchen or dining table, ideal for serving salads, fruits, or as a decorative piece."
 }'
 
 ### Get All Categories
